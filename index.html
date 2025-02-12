@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealWeather</title>
+    <link rel="StyleSheet" href="Style/style.css">
+    <script src="app.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body background="img/bg.jpg" class="bg-body-secondary">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RealWeather</a>
+
+
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+                <ul class="navbar-nav me-auto">
+                </ul>
+                <form role="search">
+                    <input id="userInput" class="form-control" type="search" placeholder="Search by Location"
+                        aria-label="Search">
+                </form>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="searchBtnOnAction()"> Search</button>
+    </nav>
+
+
+    <div class="container mt-2">
+        <div class="row">
+            <!-- First container with bold color -->
+            <div class="col-md-6">
+                <div class="container1">
+                    <div>
+                    <h1 class="H1" id="locationName"> Fetching...</h1>
+                    <h2 class="H2" id="temp">Loading..</h2>
+                    <h2 class="H2" id="cCondition"></h2>
+                    <p class="p" id="localTime">loading..</p>
+                </div>
+                    <div><img id="conditionIcon" src="" alt="" class="condition-icon"></div>
+                    
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container3">
+                            <h2 class="H2">Today Forecast</h2>
+                            <div class="last5Day">
+                                <div>
+                                    <p class="day7">6AM</p>
+                                    <img id="conditionIcon1" src="" alt="" class="condition-iconsC">
+                                    <p id="sixamtemp" class="day7">Loading</p>
+                                </div>
+                                <div>
+                                    <p class="day7">9AM</p>
+                                    <img id="conditionIcon2" src="" alt="" class="condition-iconsC">
+                                    <p id="nineamtemp" class="day7">Loading</p>
+                                </div>
+                                <div>
+                                    <p class="day7">12PM</p>
+                                    <img id="conditionIcon3" src="" alt="" class="condition-iconsC">
+                                    <p id="twlpmtemp" class="day7">Loading</p>
+                                </div>
+                                <div>
+                                    <p class="day7">3PM</p>
+                                    <img id="conditionIcon4" src="" alt="" class="condition-iconsC">
+                                    <p id="threepmtemp" class="day7">Loading</p>
+                                </div>
+                                <div>
+                                    <p class="day7">6PM</p>
+                                    <img id="conditionIcon5" src="" alt="" class="condition-iconsC">
+                                    <p id="sixpmtemp" class="day7">Loading</p>
+                                </div>
+                                <div>
+                                    <p class="day7">9PM</p>
+                                    <img id="conditionIcon6" src="" alt="" class="condition-iconsC">
+                                    <p id="ninepmtemp" class="day7">Loading</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container3">
+                                <div class="conditions">
+
+                                    <div>
+                                        <h2 class="H3">Wind</h2>
+                                        <p id="wind">loading...</p>
+                                        <h2 class="H3">Humidity</h2>
+                                        <p id="humidity">loading...</p>
+
+                                    </div>
+                                    <div>
+                                        <h2 class="H3">UV Index</h2>
+                                        <p id="uvIndex">loading...</p>
+                                        <h2 class="H3">Wind Direction</h2>
+                                        <p id="wDirection">loading...</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container3">
+                                <h2 class="H2">Last Five Days Forcast</h2>
+                                <div class="last5Day">
+                                    <div>
+                                        <p id="lday1" class="day5">Day1</p>
+                                        <img id="lconditionIcon1" src="" alt="" class="condition-icons">
+                                        <p id="condition1" class="day5">Loading</p>
+                                    </div>
+                                    <div>
+                                        <p id="lday2" class="day5">Day2</p>
+                                        <img id="lconditionIcon2" src="" alt="" class="condition-icons">
+                                        <p id="condition2" class="day5">Loading</p>
+                                    </div>
+                                    <div>
+                                        <p id="lday3" class="day5">Day3</p>
+                                        <img id="lconditionIcon3" src="" alt="" class="condition-icons">
+                                        <p id="condition3" class="day5">Loading</p>
+                                    </div>
+                                    <div>
+                                        <p id="lday4" class="day5">Day4</p>
+                                        <img id="lconditionIcon4" src="" alt="" class="condition-icons">
+                                        <p id="condition4" class="day5">Loading</p>
+                                    </div>
+                                    <div>
+                                        <p id="lday5" class="day5">Day5</p>
+                                        <img id="lconditionIcon5" src="" alt="" class="condition-icons">
+                                        <p id="condition5" class="day5">Loading</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container3">
+                            <h2 class="H2">Next Seven Days Forcast</h2>
+                            <div class="next7Day">
+                                <div>
+                                    <p class="sevenDay" id="fDay1">Day1</p>
+                                    <p class="sevenDay" id="fDay2">Day2</p>
+                                    <p class="sevenDay" id="fDay3">Day3</p>
+                                    <p class="sevenDay" id="fDay4">Day4</p>
+                                    <p class="sevenDay" id="fDay5">Day5</p>
+                                    <p class="sevenDay" id="fDay6">Day6</p>
+                                    <p class="sevenDay" id="fDay7">Day7</p>
+
+
+                                </div>
+                                <div>
+                                    <p class="sevenDay" id="fFeel1">Feel1</p>
+                                    <p class="sevenDay" id="fFeel2">Feel2</p>
+                                    <p class="sevenDay" id="fFeel3">Feel3</p>
+                                    <p class="sevenDay" id="fFeel4">Feel4</p>
+                                    <p class="sevenDay" id="fFeel5">Feel5</p>
+                                    <p class="sevenDay" id="fFeel6">Feel6</p>
+                                    <p class="sevenDay" id="fFeel7">Feel7</p>
+
+
+
+                                </div>
+                                <div>
+
+                                    <div><img id="fConditionIcon1" src="" alt="" class="condition-icons7"></div>
+                                    <div><img id="fConditionIcon2" src="" alt="" class="condition-icons7"></div>
+                                    <div><img id="fConditionIcon3" src="" alt="" class="condition-icons7"></div>
+                                    <div><img id="fConditionIcon4" src="" alt="" class="condition-icons7"></div>
+                                    <div><img id="fConditionIcon5" src="" alt="" class="condition-icons7"></div>
+                                    <div><img id="fConditionIcon6" src="" alt="" class="condition-icons7"></div>
+                                    <div><img id="fConditionIcon7" src="" alt="" class="condition-icons7"></div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <div id="map"></div>
+    <div id="location"></div>
+
+
+</body>
+
+</html>

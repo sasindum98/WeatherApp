@@ -1,0 +1,120 @@
+.container1 {
+    display: flex;
+    background-color: transparent; /* Bold red */
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.container2 {
+    background: linear-gradient(
+        to top, rgb(0,0,0,0.15),
+        rgb(255,255,255,0.15));
+    opacity: 90%;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+    flex-direction: column;
+}
+.sevenDay{
+    margin: 40px;
+}
+.container3 {
+    
+    margin-top: 20px;
+    background: linear-gradient(
+        to top, rgb(0,0,0,0.15),
+        rgb(255,255,255,0.15));
+    opacity: 90%;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+#map { height: 400px;}
+
+.H2{
+    font-size: x-large;
+    font-weight: bold;
+    color: aliceblue;
+}
+.H4{}
+
+.H1{
+    font-size: xx-large;
+    font-weight: bold;
+    color: aliceblue;
+}
+.p{
+    font-size: medium;
+    font-weight: bold;
+    color: aliceblue;
+}
+.conditions {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 200px;
+    
+}
+.containerLeft{
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 200px;
+    
+}
+
+.last5Day{
+    display: flex;
+ 
+}
+.day5{
+    position: relative;
+    left: 20px;
+}
+.day7{
+    position: relative;
+    left: 40px;
+}
+.next7Day{
+    display: flex;
+    justify-content: space-between;
+}
+.condition-icons{
+    position: relative;
+    margin: 5px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    
+}
+.condition-iconsC{
+    position: relative;
+    margin: 6px;
+    top: 0px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    
+}
+.condition-icons7{
+    position: relative;
+    top: 20px;
+    margin: 2px;
+    width: 60px;
+    height: 60px;
+}
+.H3{
+    font-size: large;
+    font-weight: bold;
+    color: aliceblue;
+}
+.condition-icon {
+    position:absolute ;
+    top: 150px;
+    left: 540px;
+    width: 100px;
+    height: 100px;
+    
+    
+}
