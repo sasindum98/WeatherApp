@@ -5,8 +5,8 @@ function searchBtnOnAction() {
 
     searchData(userInput);
     getLast5DaysForecast(userInput);
-    dayForecast(userInput)
-    getnext7day(userInput)
+    dayForecast(userInput);
+    getnext2days(userInput);
 
 }
 
@@ -91,6 +91,8 @@ function dayForecast(userInput) {
     let conditionIcon4 = document.getElementById("conditionIcon4");
     let conditionIcon5 = document.getElementById("conditionIcon5");
     let conditionIcon6 = document.getElementById("conditionIcon6");
+    let averageTemp = document.getElementById("averageTemp");
+    let chanceRain = document.getElementById("chanceRain");
 
     fetch(`https://api.weatherapi.com/v1/forecast.json?key=0d6a73dda4df492095472525240309&q=${userInput}`)
         .then(res => {
@@ -114,28 +116,32 @@ function dayForecast(userInput) {
             conditionIcon4.src = `https:${data.forecast.forecastday[0].hour[15].condition.icon}`;
             conditionIcon5.src = `https:${data.forecast.forecastday[0].hour[18].condition.icon}`;
             conditionIcon6.src = `https:${data.forecast.forecastday[0].hour[21].condition.icon}`;
+            averageTemp.innerText = `${data.forecast.forecastday[0].day.avgtemp_c}°C / ${data.forecast.forecastday[0].day.avgtemp_f}°F`;
+            chanceRain.innerText = data.forecast.forecastday[0].day.daily_chance_of_rain;
+
 
 
         })
 
 }
-function getnext7day(userInput) {
+function getnext2days(userInput) {
+    let fConditionIcon1 = document.getElementById("fConditionIcon1");
+    let fConditionIcon2 = document.getElementById("fConditionIcon2");
 
-    let fConditionIcon1 = document.getElementById("fConditionIcon1")
-    let fConditionIcon2 = document.getElementById("fConditionIcon2")
-    let fConditionIcon3 = document.getElementById("fConditionIcon3")
-    let fConditionIcon4 = document.getElementById("fConditionIcon4")
-    let fConditionIcon5 = document.getElementById("fConditionIcon5")
-    let fConditionIcon6 = document.getElementById("fConditionIcon6")
-    let fConditionIcon7 = document.getElementById("fConditionIcon7")
-    let fFeel1 = document.getElementById("fFeel1")
-    let fFeel2 = document.getElementById("fFeel2")
-    let fFeel3 = document.getElementById("fFeel3")
-    let fFeel4 = document.getElementById("fFeel4")
-    let fFeel5 = document.getElementById("fFeel5")
-    let fFeel6 = document.getElementById("fFeel6")
-    let fFeel7 = document.getElementById("fFeel7")
+    let fFeel1 = document.getElementById("fFeel1");
+    let fFeel2 = document.getElementById("fFeel2");
+    let fAvgTemp1 = document.getElementById("fAvgTemp1");
+    let fAvgTemp2 = document.getElementById("fAvgTemp2");
 
+    let nWind1 = document.getElementById("nWind1");
+    let nHumidity1 = document.getElementById("nHumidity1");
+    let nUvIndex1 = document.getElementById("nUvIndex1");
+    let wCofRain1 = document.getElementById("wCofRain1");
+
+    let nWind2 = document.getElementById("nWind2");
+    let nHumidity2 = document.getElementById("nHumidity2");
+    let nUvIndex3 = document.getElementById("nUvIndex3");
+    let wCofRain2 = document.getElementById("wCofRain2");
 
     const today = new Date();
 
@@ -144,33 +150,51 @@ function getnext7day(userInput) {
         date.setDate(today.getDate() + i);
         const formattedDate = date.toISOString().split('T')[0];
         const dayElement = document.getElementById(`fDay${i}`);
-        dayElement.innerText = date.toLocaleDateString('en-US', { weekday: 'short' });
+        if (dayElement) {
+            dayElement.innerText = date.toLocaleDateString('en-US', { weekday: 'short' });
+        }
     }
 
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=0d6a73dda4df492095472525240309&q=${userInput}&days=8`)
+    fetch(`https://api.weatherapi.com/v1/forecast.json?key=0d6a73dda4df492095472525240309&q=${userInput}&days=3`)
         .then(res => {
             if (!res.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Network response was not ok: ${res.status}`);
             }
             return res.json();
         })
         .then(data => {
+            console.log("Full forecast data:", data);
 
+
+
+            // Set icons
             fConditionIcon1.src = `https:${data.forecast.forecastday[1].day.condition.icon}`;
             fConditionIcon2.src = `https:${data.forecast.forecastday[2].day.condition.icon}`;
-            fConditionIcon3.src = `https:${data.forecast.forecastday[3].day.condition.icon}`;
-            fConditionIcon4.src = `https:${data.forecast.forecastday[4].day.condition.icon}`;
-            fConditionIcon5.src = `https:${data.forecast.forecastday[5].day.condition.icon}`;
-            fConditionIcon6.src = `https:${data.forecast.forecastday[6].day.condition.icon}`;
-            fConditionIcon7.src = `https:${data.forecast.forecastday[7].day.condition.icon}`;
-            fFeel1.innerText = `${data.forecast.forecastday[1].day.condition.text}`;
-            fFeel2.innerText = `${data.forecast.forecastday[2].day.condition.text}`;
-            fFeel3.innerText = `${data.forecast.forecastday[3].day.condition.text}`;
-            fFeel4.innerText = `${data.forecast.forecastday[4].day.condition.text}`;
-            fFeel5.innerText = `${data.forecast.forecastday[5].day.condition.text}`;
-            fFeel6.innerText = `${data.forecast.forecastday[6].day.condition.text}`;
-            fFeel7.innerText = `${data.forecast.forecastday[7].day.condition.text}`;
+
+            // Set condition text
+            fFeel1.innerText = data.forecast.forecastday[1].day.condition.text;
+            fFeel2.innerText = data.forecast.forecastday[2].day.condition.text;
+
+            // Set average temperatures with degree symbol
+            fAvgTemp1.innerText = `${data.forecast.forecastday[1].day.avgtemp_c}°`;
+            fAvgTemp2.innerText = `${data.forecast.forecastday[2].day.avgtemp_c}°`;
+
+            nWind1.innerText = `${data.forecast.forecastday[1].day.maxwind_kph}kph`;
+            nHumidity1.innerText = data.forecast.forecastday[1].day.avghumidity;
+            nUvIndex1.innerText = data.forecast.forecastday[1].day.uv;
+            wCofRain1.innerText = data.forecast.forecastday[1].day.daily_chance_of_rain;
+
+            nWind2.innerText = `${data.forecast.forecastday[2].day.maxwind_kph}kph`;
+            nHumidity2.innerText = data.forecast.forecastday[2].day.avghumidity;
+            nUvIndex2.innerText = data.forecast.forecastday[2].day.uv;
+            wCofRain2.innerText = data.forecast.forecastday[2].day.daily_chance_of_rain;
+
+
+
+
 
         })
-
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+        });
 }

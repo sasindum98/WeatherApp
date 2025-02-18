@@ -11,216 +11,212 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body background="img/bg.jpg" class="bg-body-secondary">
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+<body class="bg-dark" background="img/bg.jpg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">RealWeather</a>
-
-
-            <div class="collapse navbar-collapse" id="navbarsExample02">
-                <ul class="navbar-nav me-auto">
-                </ul>
-                <form role="search">
-                    <input id="userInput" class="form-control" type="search" placeholder="Search by Location"
-                        aria-label="Search">
-                </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSearch">
+                <div class="d-flex ms-auto">
+                    <input id="userInput" class="form-control me-2" type="search" placeholder="Search by Location">
+                    <button class="btn btn-primary" type="button" onclick="searchBtnOnAction()">Search</button>
+                </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="button" onclick="searchBtnOnAction()"> Search</button>
     </nav>
 
-
-    <div class="container mt-2">
+    <div class="container mt-4">
         <div class="row">
-            <!-- First container with bold color -->
-            <div class="col-md-6">
-                <div class="container1">
-                    <div>
-                    <h1 class="H1" id="locationName"> Fetching...</h1>
-                    <h2 class="H2" id="temp">Loading..</h2>
-                    <h2 class="H2" id="cCondition"></h2>
-                    <p class="p" id="localTime">loading..</p>
+            <!-- Left Column -->
+            <div class="col-lg-8">
+                <!-- Main Weather Info -->
+                <div class="weather-container main-weather">
+                    <h1 id="locationName" class="display-4">Fetching...</h1>
+                    <h2 id="temp" class="h2">--°</h2>
+                    <h3 id="cCondition" class="h3"></h3>
+                    <p id="localTime" class="lead">loading..</p>
+                    <img id="conditionIcon" src="" alt="" class="condition-icon">
                 </div>
-                    <div><img id="conditionIcon" src="" alt="" class="condition-icon"></div>
+
+                <!-- Today's Forecast -->
+                <div class="weather-container">
+                    <h2 class="h3 mb-4">Today's Forecast</h2>
+                    <div class="forecast-scroll">
+                        <div class="row flex-nowrap">
+                            <div class="col forecast-item">
+                                <p>6AM</p>
+                                <img id="conditionIcon1" src="" alt="" class="forecast-icon">
+                                <p id="sixamtemp">--°</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p>9AM</p>
+                                <img id="conditionIcon2" src="" alt="" class="forecast-icon">
+                                <p id="nineamtemp">--°</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p>12PM</p>
+                                <img id="conditionIcon3" src="" alt="" class="forecast-icon">
+                                <p id="twlpmtemp">--°</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p>3PM</p>
+                                <img id="conditionIcon4" src="" alt="" class="forecast-icon">
+                                <p id="threepmtemp">--°</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p>6PM</p>
+                                <img id="conditionIcon5" src="" alt="" class="forecast-icon">
+                                <p id="sixpmtemp">--°</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p>9PM</p>
+                                <img id="conditionIcon6" src="" alt="" class="forecast-icon">
+                                <p id="ninepmtemp">--°</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Conditions -->
+                <div class="weather-container">
+                    <div class="conditions-grid">
+                        <div class="weather-stat">
+                            <h3 class="h4">Wind</h3>
+                            <p id="wind" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h4">Humidity</h3>
+                            <p id="humidity" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h4">UV Index</h3>
+                            <p id="uvIndex" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h4">Wind Direction</h3>
+                            <p id="wDirection" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h4">Average Temperature</h3>
+                            <p id="averageTemp" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h4">Chance of Rain</h3>
+                            <p id="chanceRain" class="mb-0">loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Five Days Forecast -->
+                <div class="weather-container">
+                    <h2 class="h3 mb-4">Last Five Days Forecast</h2>
+                    <div class="forecast-scroll">
+                        <div class="row flex-nowrap">
+                            <div class="col forecast-item">
+                                <p id="lday1">Day1</p>
+                                <img id="lconditionIcon1" src="" alt="" class="forecast-icon">
+                                <p id="condition1">Loading</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p id="lday2">Day2</p>
+                                <img id="lconditionIcon2" src="" alt="" class="forecast-icon">
+                                <p id="condition2">Loading</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p id="lday3">Day3</p>
+                                <img id="lconditionIcon3" src="" alt="" class="forecast-icon">
+                                <p id="condition3">Loading</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p id="lday4">Day4</p>
+                                <img id="lconditionIcon4" src="" alt="" class="forecast-icon">
+                                <p id="condition4">Loading</p>
+                            </div>
+                            <div class="col forecast-item">
+                                <p id="lday5">Day5</p>
+                                <img id="lconditionIcon5" src="" alt="" class="forecast-icon">
+                                <p id="condition5">Loading</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - 2 Day Forecast -->
+            <div class="col-lg-4">
+                <div class="weather-container forecast-container">
+                    <h2 class="h3 mb-4">Next Two Days</h2>
+                    <div class="seven-day-item">
+                        <img id="fConditionIcon1" src="" alt="" class="forecast-icon me-3">
+                        <div class="flex-grow-1">
+                            <p id="fDay1" class="h5 mb-1">Day1</p>
+                            <p id="fFeel1" class="mb-0">Feel1</p>
+                        </div>
+                        
+                        <div class="text-end">
+                            <span id="fAvgTemp1" class="h5">--°</span>
+                        </div>
+                    
+                    </div>
+                    <div class="conditions-grid1">
+                        <div class="weather-stat">
+                            <h3 class="h5">Max Wind</h3>
+                            <p id="nWind1" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h5">Humidity</h3>
+                            <p id="nHumidity1" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h5">UV Index</h3>
+                            <p id="nUvIndex1" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h5">Chance of Rain</h3>
+                            <p id="wCofRain1" class="mb-0">loading...</p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="seven-day-item">
+                        <img id="fConditionIcon2" src="" alt="" class="forecast-icon me-3">
+                        <div class="flex-grow-1">
+                            <p id="fDay2" class="h5 mb-1">Day2</p>
+                            <p id="fFeel2" class="mb-0">Feel2</p>
+                        </div>
+                        <div class="text-end">
+                            <span id="fAvgTemp2" class="h5">--°</span>
+                        </div>
+                    </div>
+                    <div class="conditions-grid1">
+                        <div class="weather-stat">
+                            <h3 class="h5">Max Wind</h3>
+                            <p id="nWind2" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h5">Humidity</h3>
+                            <p id="nHumidity2" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h5">UV Index</h3>
+                            <p id="nUvIndex2" class="mb-0">loading...</p>
+                        </div>
+                        <div class="weather-stat">
+                            <h3 class="h5">Chance of Rain</h3>
+                            <p id="wCofRain2" class="mb-0">loading...</p>
+                        </div>
+                        
+                    </div>
                     
                 </div>
-                
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="container3">
-                            <h2 class="H2">Today Forecast</h2>
-                            <div class="last5Day">
-                                <div>
-                                    <p class="day7">6AM</p>
-                                    <img id="conditionIcon1" src="" alt="" class="condition-iconsC">
-                                    <p id="sixamtemp" class="day7">Loading</p>
-                                </div>
-                                <div>
-                                    <p class="day7">9AM</p>
-                                    <img id="conditionIcon2" src="" alt="" class="condition-iconsC">
-                                    <p id="nineamtemp" class="day7">Loading</p>
-                                </div>
-                                <div>
-                                    <p class="day7">12PM</p>
-                                    <img id="conditionIcon3" src="" alt="" class="condition-iconsC">
-                                    <p id="twlpmtemp" class="day7">Loading</p>
-                                </div>
-                                <div>
-                                    <p class="day7">3PM</p>
-                                    <img id="conditionIcon4" src="" alt="" class="condition-iconsC">
-                                    <p id="threepmtemp" class="day7">Loading</p>
-                                </div>
-                                <div>
-                                    <p class="day7">6PM</p>
-                                    <img id="conditionIcon5" src="" alt="" class="condition-iconsC">
-                                    <p id="sixpmtemp" class="day7">Loading</p>
-                                </div>
-                                <div>
-                                    <p class="day7">9PM</p>
-                                    <img id="conditionIcon6" src="" alt="" class="condition-iconsC">
-                                    <p id="ninepmtemp" class="day7">Loading</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="container3">
-                                <div class="conditions">
-
-                                    <div>
-                                        <h2 class="H3">Wind</h2>
-                                        <p id="wind">loading...</p>
-                                        <h2 class="H3">Humidity</h2>
-                                        <p id="humidity">loading...</p>
-
-                                    </div>
-                                    <div>
-                                        <h2 class="H3">UV Index</h2>
-                                        <p id="uvIndex">loading...</p>
-                                        <h2 class="H3">Wind Direction</h2>
-                                        <p id="wDirection">loading...</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="container3">
-                                <h2 class="H2">Last Five Days Forcast</h2>
-                                <div class="last5Day">
-                                    <div>
-                                        <p id="lday1" class="day5">Day1</p>
-                                        <img id="lconditionIcon1" src="" alt="" class="condition-icons">
-                                        <p id="condition1" class="day5">Loading</p>
-                                    </div>
-                                    <div>
-                                        <p id="lday2" class="day5">Day2</p>
-                                        <img id="lconditionIcon2" src="" alt="" class="condition-icons">
-                                        <p id="condition2" class="day5">Loading</p>
-                                    </div>
-                                    <div>
-                                        <p id="lday3" class="day5">Day3</p>
-                                        <img id="lconditionIcon3" src="" alt="" class="condition-icons">
-                                        <p id="condition3" class="day5">Loading</p>
-                                    </div>
-                                    <div>
-                                        <p id="lday4" class="day5">Day4</p>
-                                        <img id="lconditionIcon4" src="" alt="" class="condition-icons">
-                                        <p id="condition4" class="day5">Loading</p>
-                                    </div>
-                                    <div>
-                                        <p id="lday5" class="day5">Day5</p>
-                                        <img id="lconditionIcon5" src="" alt="" class="condition-icons">
-                                        <p id="condition5" class="day5">Loading</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
-
-            <div class="col">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="container3">
-                            <h2 class="H2">Next Seven Days Forcast</h2>
-                            <div class="next7Day">
-                                <div>
-                                    <p class="sevenDay" id="fDay1">Day1</p>
-                                    <p class="sevenDay" id="fDay2">Day2</p>
-                                    <p class="sevenDay" id="fDay3">Day3</p>
-                                    <p class="sevenDay" id="fDay4">Day4</p>
-                                    <p class="sevenDay" id="fDay5">Day5</p>
-                                    <p class="sevenDay" id="fDay6">Day6</p>
-                                    <p class="sevenDay" id="fDay7">Day7</p>
-
-
-                                </div>
-                                <div>
-                                    <p id="fFeel1" class="sevenDay" >Feel1</p>
-                                    <p class="sevenDay" id="fFeel2">Feel2</p>
-                                    <p class="sevenDay" id="fFeel3">Feel3</p>
-                                    <p class="sevenDay" id="fFeel4">Feel4</p>
-                                    <p class="sevenDay" id="fFeel5">Feel5</p>
-                                    <p class="sevenDay" id="fFeel6">Feel6</p>
-                                    <p class="sevenDay" id="fFeel7">Feel7</p>
-
-
-
-                                </div>
-                                <div>
-
-                                    <div><img id="fConditionIcon1" src="" alt="" class="condition-icons7"></div>
-                                    <div><img id="fConditionIcon2" src="" alt="" class="condition-icons7"></div>
-                                    <div><img id="fConditionIcon3" src="" alt="" class="condition-icons7"></div>
-                                    <div><img id="fConditionIcon4" src="" alt="" class="condition-icons7"></div>
-                                    <div><img id="fConditionIcon5" src="" alt="" class="condition-icons7"></div>
-                                    <div><img id="fConditionIcon6" src="" alt="" class="condition-icons7"></div>
-                                    <div><img id="fConditionIcon7" src="" alt="" class="condition-icons7"></div>
-
-
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
-
-
-
     </div>
 
-
-    <div id="map"></div>
-    <div id="location"></div>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
