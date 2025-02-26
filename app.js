@@ -1,3 +1,60 @@
+document.addEventListener('DOMContentLoaded',function(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+        
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+   
+})
+function showPosition(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    console.log("Latitude: " + latitude);
+    console.log("Longitude: " + longitude);
+  
+  
+    const geocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+  
+    fetch(geocodingUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.display_name) {
+          const fullAddress = data.display_name;
+          firstPart = fullAddress.split(' - ')[0];
+          console.log("Current location:", firstPart);
+          searchData(firstPart);
+          dayForecast(firstPart);
+          getLast5DaysForecast(firstPart);
+          getnext2days(firstPart);
+          
+        } else {
+          console.error("Error fetching location name: No result");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  
+      
+  }
+  function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      console.log("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      console.log("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      console.log("An unknown error occurred.");
+      break;
+  }
+}
+
 function searchBtnOnAction() {
     const userInput = document.getElementById("userInput").value;
 
@@ -167,15 +224,15 @@ function getnext2days(userInput) {
 
 
 
-            // Set icons
+         
             fConditionIcon1.src = `https:${data.forecast.forecastday[1].day.condition.icon}`;
             fConditionIcon2.src = `https:${data.forecast.forecastday[2].day.condition.icon}`;
 
-            // Set condition text
+          
             fFeel1.innerText = data.forecast.forecastday[1].day.condition.text;
             fFeel2.innerText = data.forecast.forecastday[2].day.condition.text;
 
-            // Set average temperatures with degree symbol
+            
             fAvgTemp1.innerText = `${data.forecast.forecastday[1].day.avgtemp_c}°`;
             fAvgTemp2.innerText = `${data.forecast.forecastday[2].day.avgtemp_c}°`;
 
@@ -197,4 +254,57 @@ function getnext2days(userInput) {
         .catch(error => {
             console.error('Error fetching weather data:', error);
         });
+
+
+    function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // Success function
+                    showPosition, 
+                    // Error function
+                    null, 
+                    // Options. See MDN for details.
+                    {
+                       enableHighAccuracy: true,
+                       timeout: 5000,
+                       maximumAge: 0
+                    });
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            showPosition(position);
+            showError(error);
+            showPositionOnMap(position);
+    }
+        
+    function showPosition(position) {
+            x.innerHTML="Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude;  
+        
+    }
+
+    function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+    }
+    function showPositionOnMap(position) {
+            var latlon = position.coords.latitude + "," + position.coords.longitude;
+        
+            var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false";
+        
+            document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+    }
+
 }
