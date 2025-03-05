@@ -72,6 +72,20 @@ body {
     border-radius: 8px;
     margin-bottom: 10px;
 }
+.map-container {
+    width: 100%;
+    height: 270px;
+    margin-top: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    zoom:150%
+}
+#map-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    
+}
 
 @media (max-width: 991px) {
     .forecast-container {
@@ -103,5 +117,10 @@ body {
     .forecast-item {
         display: inline-block;
         min-width: 100px;
+    }
+   
+    .map-container{
+
+        height: 250px;
     }
 }
