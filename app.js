@@ -32,7 +32,7 @@ function initializeApp() {
 function initMap(lat, lng) {
     map = new google.maps.Map(document.getElementById('map-container'), {
         center: { lat: lat, lng: lng },
-        zoom: 10
+        zoom: 16
     });
 
     // Add marker for current location
